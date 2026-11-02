@@ -54,10 +54,10 @@ class HpM1005UsbDriver(private val context: Context) {
         }
 
         val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            PendingIntent.FLAG_IMMUTABLE
-        } else {
-            0
-        }
+    PendingIntent.FLAG_MUTABLE
+} else {
+    0
+}
 
         val permissionIntent = PendingIntent.getBroadcast(
             context, 0, Intent(ACTION_USB_PERMISSION), flags
@@ -92,7 +92,11 @@ class HpM1005UsbDriver(private val context: Context) {
         this@HpM1005UsbDriver.usbConnection = connection
 
         val usbInterface = device.getInterface(0)
-        connection.claimInterface(usbInterface, true)
+       if (!connection.claimInterface(usbInterface, true)) {
+    connection.close()
+    this@HpM1005UsbDriver.usbConnection = null
+    return@withContext false
+}
 
         for (i in 0 until usbInterface.endpointCount) {
             val endpoint = usbInterface.getEndpoint(i)
@@ -122,10 +126,10 @@ class HpM1005UsbDriver(private val context: Context) {
                 val chunk = data.copyOfRange(offset, offset + length)
                 val sent = connection.bulkTransfer(endpoint, chunk, length, 5000)
 
-                if (sent < 0) {
+                if (sent <= 0) {
                     return@withContext false
                 }
-                offset += length
+               offset += sent
                 progressCallback(offset.toFloat() / total.toFloat())
             }
 
