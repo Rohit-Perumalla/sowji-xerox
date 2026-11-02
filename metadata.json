@@ -1,0 +1,6 @@
+{
+  "name": "Rohit Universal Print",
+  "description": "Complete Android printing suite for Canon PIXMA G3010 and HP LaserJet M1005 with USB OTG, Wi-Fi, AI Passport Photo Studio, Document Spooler, and Android Studio Project export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

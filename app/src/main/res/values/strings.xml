@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Sowji Xerox</string>
+    <string name="app_tagline">Your Smart Printing Studio</string>
+    <string name="usb_permission_title">USB Printer Permission</string>
+    <string name="usb_permission_msg">Allow Sowji Xerox to access the connected printer?</string>
+    <string name="update_ready_title">Update Downloaded</string>
+    <string name="update_ready_msg">Do you want to install this update? Your printing presets and logs will be preserved.</string>
+</resources>

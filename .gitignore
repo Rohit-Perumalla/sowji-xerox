@@ -1,0 +1,43 @@
+# Node.js & Vite build artifacts
+node_modules/
+dist/
+build/
+coverage/
+*.log
+.DS_Store
+
+# Environment files & Secrets
+.env*
+!.env.example
+*.env
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Android & Gradle Build Artifacts
+.gradle/
+app/build/
+local.properties
+.idea/
+*.iml
+.cxx/
+captures/
+.externalNativeBuild/
+
+# Android Keystores & Signing Keys (NEVER commit signing keys)
+*.keystore
+*.jks
+release.keystore
+debug.keystore
+release.properties
+signing.properties
+
+# Android Packages & Binaries
+*.apk
+*.aab
+checksums.txt
+
+# OS and Editor files
+.vscode/
+Thumbs.db

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- HP LaserJet M1005 MFP (Vendor ID: 0x03F0 = 1008, Product ID: 0x3B17 = 15127) -->
+    <usb-device vendor-id="1008" product-id="15127" class="7" />
+    <!-- Canon PIXMA G3010 Series USB (Vendor ID: 0x04A9 = 1193, Product ID: 0x1824 = 6180) -->
+    <usb-device vendor-id="1193" product-id="6180" class="7" />
+    <!-- Generic USB Printer Class (Interface Class 7) -->
+    <usb-device class="7" />
+</resources>

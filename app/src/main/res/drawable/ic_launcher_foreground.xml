@@ -1,0 +1,30 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Printer base -->
+    <path
+        android:fillColor="#F5F5F7"
+        android:pathData="M28,42h52c3.3,0 6,2.7 6,6v24c0,3.3 -2.7,6 -6,6H28c-3.3,0 -6,-2.7 -6,-6V48C22,44.7 24.7,42 28,42z" />
+    <!-- Paper input top -->
+    <path
+        android:fillColor="#6366F1"
+        android:pathData="M36,24h36c1.1,0 2,0.9 2,2v16H34V26C34,24.9 34.9,24 36,24z" />
+    <!-- Output paper tray -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M34,60h40c1.1,0 2,0.9 2,2v20c0,1.1 -0.9,2 -2,2H34c-1.1,0 -2,-0.9 -2,-2V62C32,60.9 32.9,60 34,60z" />
+    <!-- Text / scan line on paper -->
+    <path
+        android:fillColor="#6366F1"
+        android:pathData="M38,66h32v2.5H38zM38,71h24v2.5H38zM38,76h16v2.5H38z" />
+    <!-- Status LED (green) -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M76,50a3,3 0 1,0 6,0a3,3 0 1,0 -6,0" />
+    <!-- SX Monogram badge -->
+    <path
+        android:fillColor="#101114"
+        android:pathData="M48,50h12v4H48z" />
+</vector>
