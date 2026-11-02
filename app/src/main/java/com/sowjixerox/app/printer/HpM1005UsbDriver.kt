@@ -28,7 +28,6 @@ class HpM1005UsbDriver(private val context: Context) {
     private var usbConnection: android.hardware.usb.UsbDeviceConnection? = nullD
     private val usbManager: UsbManager = context.getSystemService(Context.USB_SERVICE) as UsbManager
     private var usbDevice: UsbDevice? = null
-    private var usbConnection: UsbDeviceConnection? = null
     private var bulkOutEndpoint: UsbEndpoint? = null
     private var bulkInEndpoint: UsbEndpoint? = null
 
