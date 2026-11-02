@@ -110,7 +110,7 @@ class HpM1005UsbDriver(private val context: Context) {
 
     suspend fun sendZjStreamBytes(data: ByteArray, progressCallback: (Float) -> Unit): Boolean =
         withContext(Dispatchers.IO) {
-            val connection = this.usbConnection ?: return@withContext false
+            val connection = usbConnection ?: return@withContext false
             val endpoint = bulkOutEndpoint ?: return@withContext false
 
             val chunkSize = 16384 // 16KB USB chunk size
