@@ -89,7 +89,7 @@ class HpM1005UsbDriver(private val context: Context) {
         if (!usbManager.hasPermission(device)) return@withContext false
 
         val connection = usbManager.openDevice(device) ?: return@withContext false
-        this.usbConnection = connection
+        this@HpM1005UsbDriver.usbConnection = connection
 
         val usbInterface = device.getInterface(0)
         connection.claimInterface(usbInterface, true)
