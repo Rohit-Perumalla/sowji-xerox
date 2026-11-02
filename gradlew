@@ -139,6 +139,6 @@ fi
 
 # Collect all arguments for the java command, following the shell quoting and substitution rules
 EXTRA_JVM_OPTS=`echo "$GRADLE_OPTS" | sed -e 's/"/\\"/g'`
-eval set -- $DEFAULT_JVM_OPTS $EXTRA_JVM_OPTS -jar "\"$CLASSPATH\"" '"$@"'
+eval set -- $DEFAULT_JVM_OPTS $EXTRA_JVM_OPTS "-Dorg.gradle.appname=$APP_BASE_NAME" -classpath "\"$CLASSPATH\"" org.gradle.wrapper.GradleWrapperMain '"$@"'
 
 exec "$JAVACMD" "$@"
