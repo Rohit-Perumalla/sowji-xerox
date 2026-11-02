@@ -25,7 +25,7 @@ class HpM1005UsbDriver(private val context: Context) {
         // ZjStream Magic Word
         const val ZJ_MAGIC = 0x5A5A5A5A.toInt()
     }
-
+    private var usbConnection: android.hardware.usb.UsbDeviceConnection? = nullD
     private val usbManager: UsbManager = context.getSystemService(Context.USB_SERVICE) as UsbManager
     private var usbDevice: UsbDevice? = null
     private var usbConnection: UsbDeviceConnection? = null
