@@ -13,11 +13,16 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import com.sowjixerox.app.printer.PrinterBridgePlugin
+import androidx.webkit.WebViewAssetLoader
+import androidx.webkit.WebViewClientCompat
+import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var webView: WebView
     private lateinit var bridgePlugin: PrinterBridgePlugin
+    private lateinit var assetLoader: WebViewAssetLoader
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,30 +36,47 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = getColor(R.color.bg_dark)
         window.navigationBarColor = getColor(R.color.bg_dark)
 
-        // Setup WebView settings
-        val settings = webView.settings
-        settings.javaScriptEnabled = true
-        settings.domStorageEnabled = true
-        settings.databaseEnabled = true
-        settings.allowFileAccess = true
-        settings.allowContentAccess = true
-        settings.cacheMode = WebSettings.LOAD_DEFAULT
+      // Load bundled web assets securely
+assetLoader = WebViewAssetLoader.Builder()
+    .addPathHandler(
+        "/assets/",
+        WebViewAssetLoader.AssetsPathHandler(this)
+    )
+    .build()
 
-        // Attach native printer & update bridge
-        bridgePlugin = PrinterBridgePlugin(this, webView)
-        webView.addJavascriptInterface(bridgePlugin, "AndroidPrinterBridge")
+// Setup WebView settings
+val settings = webView.settings
+settings.javaScriptEnabled = true
+settings.domStorageEnabled = true
+settings.databaseEnabled = true
+settings.allowFileAccess = false
+settings.allowContentAccess = true
+settings.cacheMode = WebSettings.LOAD_DEFAULT
 
-        webView.webChromeClient = WebChromeClient()
-        webView.webViewClient = object : WebViewClient() {
-            override fun onPageFinished(view: WebView?, url: String?) {
-                super.onPageFinished(view, url)
-                // Check if launched with a USB device attached
-                handleIncomingUsbIntent(intent)
-            }
-        }
+// Attach native printer bridge
+bridgePlugin = PrinterBridgePlugin(this, webView)
+webView.addJavascriptInterface(bridgePlugin, "AndroidPrinterBridge")
 
-        // Load bundled web app assets or local preview
-        webView.loadUrl("file:///android_asset/web/index.html")
+webView.webChromeClient = WebChromeClient()
+
+webView.webViewClient = object : WebViewClientCompat() {
+    override fun shouldInterceptRequest(
+        view: WebView,
+        request: WebResourceRequest
+    ): WebResourceResponse? {
+        return assetLoader.shouldInterceptRequest(request.url)
+    }
+
+    override fun onPageFinished(view: WebView, url: String) {
+        super.onPageFinished(view, url)
+        handleIncomingUsbIntent(intent)
+    }
+}
+
+// Load bundled website
+webView.loadUrl(
+    "https://appassets.androidplatform.net/assets/web/index.html"
+)
     }
 
     override fun onNewIntent(intent: Intent?) {
